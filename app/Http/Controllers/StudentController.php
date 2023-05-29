@@ -107,4 +107,38 @@ class StudentController extends Controller
             return redirect('/')->with('success', 'Berhasil hapus data sementara dari API');
         }
     }
+
+    public function trash()
+    {
+        $proses = (new BaseApi)->trash('/api/students/show/trash');
+        if ($proses->failed()) {
+            $errors = $proses->json('data');
+            return redirect()->back()->with(['errors' => $errors]);
+        }else {
+            $studentsTrash = $proses->json('data');
+            return view('trash')->with(['studentsTrash' => $studentsTrash]);
+        }
+    }
+
+    public function permanent($id)
+    {
+        $proses = (new BaseApi)->permanent('/api/students/trash/delete/permanent/'.$id);
+        if ($proses->failed()) {
+            $errors = $proses->json('data');
+            return redirect()->back()->with(['errors' => $errors]);
+        }else {
+            return redirect()->back()->with('success', 'Berhasil menghapus data secara permanen!');
+        }
+    }
+
+    public function restore($id)
+    {
+        $proses = (new BaseApi)->restore('/api/students/trash/restore/'.$id);
+        if ($proses->failed()) {
+            $errors = $proses->json('data');
+            return redirect()->back()->with(['errors' => $errors]);
+        }else {
+            return redirect('/')->with('success', 'Berhasil mengembalikan data dari sampah!');
+        }
+    }
 }

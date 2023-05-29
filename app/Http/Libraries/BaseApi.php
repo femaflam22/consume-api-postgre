@@ -56,4 +56,19 @@ class BaseApi
     {
         return $this->client()->delete($endpoint, $data);
     }
+
+    public function trash(String $endpoint, Array $data = [])
+    {
+        return $this->client()->get($endpoint, $data);
+    }
+
+    public function restore(String $endpoint, Array $data = [])
+    {
+        return $this->client()->get($endpoint, $data);
+    }
+
+    public function permanent(String $endpoint, Array $data = [])
+    {
+        return $this->client()->get($endpoint, $data);
+    }
 }

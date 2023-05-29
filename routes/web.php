@@ -15,4 +15,9 @@ Route::get('/edit/{id}', [StudentController::class, 'edit'])->name('edit');
 Route::patch('/update/{id}', [StudentController::class, 'update'])->name('update');
 // hapus data pake softdeletes
 Route::delete('/delete/{id}', [StudentController::class, 'destroy'])->name('delete');
-
+// ambil data sampah
+Route::get('/trash', [StudentController::class, 'trash'])->name('trash');
+// restore
+Route::get('/trash/restore/{id}', [StudentController::class, 'restore'])->name('restore');
+// hapus permanent
+Route::get('/trash/delete/permanent/{id}', [StudentController::class, 'permanent'])->name('permanent');

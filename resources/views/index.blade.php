@@ -14,6 +14,7 @@
     </form>
     <br>
     <a href="{{route('add')}}">Tambah Data Baru</a>
+    <a href="{{route('trash')}}" style="background: orange; color: white;">Lihat Data Terhapus</a>
     @if (Session::get('success'))
         <p style="padding: 5px 10px; background: green; color: white; margin: 10px;">{{Session::get('success')}}</p>
     @endif
